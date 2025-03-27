@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 
 from .models import Book
@@ -14,6 +13,7 @@ from rest_framework.views import APIView
 
 
 class BookList(APIView):
+    # permission_classes = [permissions.IsAuthenticated, ]
     def get(self, request):
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
